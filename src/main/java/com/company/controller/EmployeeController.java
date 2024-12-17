@@ -2,6 +2,7 @@ package com.company.controller;
 
 import com.company.model.Employee;
 import com.company.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@Valid @RequestBody Employee employee) {
         var newEmployee = employeeService.create(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
