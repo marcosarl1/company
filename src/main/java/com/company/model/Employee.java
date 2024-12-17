@@ -4,6 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity(name = "employee")
 public class Employee {
@@ -11,10 +15,15 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Size(min = 2, message = "Informe ao menos dois caracteres para o campo nome")
     private String name;
+    @CPF
     private String cpf;
+    @NotBlank(message = "Telefone obrigatório")
     private String phone;
+    @NotBlank(message = "E-mail obrigatório")
     private String email;
+    @NotNull(message = "Salário obrigatório")
     private double salary;
 
     public Employee(){}
